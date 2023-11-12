@@ -27,6 +27,6 @@ body {
 
 .transform-matrix {
   transform: matrix(0, -1, 1, 0, 0, 0);
-  right: 0;
+  right: 25px;
   position: relative;
 }
