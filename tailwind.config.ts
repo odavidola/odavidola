@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type {Config} from 'tailwindcss'
 
 const config: Config = {
   content: [
@@ -8,12 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      width: {
+        '125': '125px', // Add a custom width of 110px
       },
-    },
+      fontFamily: {
+        sans: ['var(--font-graphik)'],
+      },
+      filter: 'contrast(310%) brightness(150%)',
+      backgroundImage: {
+        noise: "radial-gradient(circle at 20% 80%, rgba(0,0,0,0), rgba(0,0,0,1)), radial-gradient(circle at 109% 48%, rgba(0,0,0,1), rgba(255,255,0,0)),  url('../public/noise.svg')",
+      },
+    }
   },
   plugins: [],
 }
