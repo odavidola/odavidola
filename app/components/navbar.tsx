@@ -1,9 +1,7 @@
 'use client';
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image';
 import {usePathname} from 'next/navigation';
-import basketballBrain from '../favicon.ico';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -41,18 +39,8 @@ export default function Navbar() {
             <div className="transform-matrix">
               <button className="text-xs">LIGHT / DARK</button>
             </div>
-            <div className="relative mx-auto mt-5 animate-bounce">
-              <Image
-                src={basketballBrain}
-                alt="Basketball brain"
-                height={20}
-                width={20}
-                className="rounded-lg object-cover"
-              />
-            </div>
 
           </div>
-
         </div>
       </nav>
     </aside>

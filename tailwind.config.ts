@@ -11,6 +11,9 @@ const config: Config = {
       width: {
         '125': '125px', // Add a custom width of 110px
       },
+      fontsize: {
+        nine: '9px'
+      },
       fontFamily: {
         sans: ['var(--font-graphik)'],
       },
