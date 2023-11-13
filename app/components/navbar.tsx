@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <aside>
-      <nav className="min-h-screen border-r border-gray-800">
+      <nav className="min-h-screenb">
         <div className="flex flex-col justify-between p-10 h-screen">
           {/* Logo or Title */}
           <div>
@@ -35,9 +35,8 @@ export default function Navbar() {
           </div>
 
           <div className="flex">
-            {/* Toggle Theme */}
             <div className="transform-matrix">
-              <button className="text-xs">LIGHT / DARK</button>
+              <button className="text-xs">HIGHLIGHTS</button>
             </div>
 
           </div>

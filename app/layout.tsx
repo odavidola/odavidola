@@ -23,6 +23,7 @@ const graphik = localFont({
   variable: '--font-graphik',
   display: 'swap',
 });
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://odola.xyz'),
   title: 'odavidola',
