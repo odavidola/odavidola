@@ -18,7 +18,7 @@ const HomePage: FC = () => {
           <br/>
           <p>I believe the world is only as large as our perception of it. Cultivating our
             awareness expands the scope, not just of the material at our disposal to create
-            from, but of the life we get to live</p>
+            from, but of the life we get to live.</p>
         </div>
       </div>
     </section>
