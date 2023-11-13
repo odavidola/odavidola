@@ -13,8 +13,8 @@ export default function Navbar() {
   ];
 
   return (
-    <aside>
-      <nav className="min-h-screenb">
+    <aside className="w-1/4">
+      <nav className="min-h-screen">
         <div className="flex flex-col justify-between p-10 h-screen">
           {/* Logo or Title */}
           <div>

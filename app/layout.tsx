@@ -52,7 +52,7 @@ export default function RootLayout(
     <body>
     <div className="flex min-h-screen bg-noise text-white">
       <Navbar/>
-      <main className="w-full h-screen p-5">
+      <main className="w-3/4 h-screen p-5">
         {children}
       </main>
     </div>
