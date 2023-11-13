@@ -1,9 +1,17 @@
 import {ArrowIcon} from "@/app/components/icons";
+import {ReactNode} from "react";
 
-export const ContactLink = ({icon, link, name}) => {
+interface ContactLinkProps {
+  icon: ReactNode;
+  link: string;
+  name: string;
+}
+
+export const ContactLink = ({icon, link, name}: ContactLinkProps) => {
   return <a
     href={link}
     target="_blank"
+    rel="noopener noreferrer"
     className="flex items-center justify-between px-1 py-2 w-full m-2"
   >
     <div>{icon}</div>
