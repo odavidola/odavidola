@@ -2,7 +2,6 @@
 import React from "react";
 import Link from "next/link";
 import {usePathname} from 'next/navigation';
-import {VideoHover} from "@/app/components/videohover";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -23,7 +22,7 @@ export default function Navbar() {
             <h2 className="text-2xl font-light mb-10">Creator & Developer</h2>
           </div>
           {/* Navigation Links */}
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-grow justify-center">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path} className="hover:text-gray-300">
                 {pathname === item.path ? (
@@ -33,15 +32,6 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-          </div>
-
-          <div className="flex">
-            <div className="vertical-text text-white flex items-center text-xs">
-              HIGHLIGHTS
-            </div>
-            <div className="w-18 h-18">
-              <VideoHover src="/marseille.mov"/>
-            </div>
           </div>
         </div>
       </nav>
