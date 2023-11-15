@@ -19,7 +19,7 @@ const config: Config = {
       },
       filter: 'contrast(310%) brightness(150%)',
       backgroundImage: {
-        noise: "radial-gradient(circle at 20% 80%, rgba(0,0,0,0), rgba(0,0,0,1)), radial-gradient(circle at 109% 48%, rgba(0,0,0,1), rgba(255,255,0,0)),  url('../public/noise.svg')",
+        noise: "url('../public/dark.png')",
       },
     }
   },
