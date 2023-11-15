@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import {usePathname} from 'next/navigation';
+import Image from 'next/image';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -11,6 +12,9 @@ export default function Navbar() {
     {name: 'Projects', path: '/projects'},
     {name: 'Blogs', path: '/blogs'},
   ];
+
+  // TODO: embedded the youtube video and one picture firs
+  // easter egg approach every 24 hours switch between my folder for now it's just 2 thing
 
   return (
     <aside className="w-1/4">
@@ -33,12 +37,24 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
+          {/*<div><VideoHover src="/IMG_1292.mov"/></div>*/}
 
           <div className="flex">
-            <div className="transform-matrix">
-              <button className="text-xs">HIGHLIGHTS</button>
+            <div className="vertical-text text-white flex items-center text-xs">
+              HIGHLIGHTS
             </div>
-
+            <div className="w-18 h-18 custom-hover-transform"
+                 style={{width: "74px", height: "74px"}}>
+              <div style={{position: 'relative', width: '100%', height: '100%'}}>
+                <Image
+                  src="/berlin2.png"
+                  alt="X logo"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </nav>
