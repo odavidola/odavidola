@@ -34,10 +34,8 @@ section {
   transform: rotate(180deg);
 }
 
-.custom-hover-transform {
-  transition: transform 1s;
-}
 
 .custom-hover-transform:hover {
-  transform: scale(4) translate(40%, -15%);
+  transform: scale(2) translate(30%, -25%);
+  transition: transform 1s;
 }

@@ -8,9 +8,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      scale: {
-        '400': '4',
-      },
       width: {
         '125': '125px', // Add a custom width of 110px
       },

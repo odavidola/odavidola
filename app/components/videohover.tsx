@@ -1,42 +1,34 @@
-import React from 'react';
+import React from "react";
 
-export const VideoHover = ({src}) => {
+interface VideoHoverProps {
+  src: string;
+}
+
+export const VideoHover = ({src}: VideoHoverProps) => {
   const videoRef = React.useRef(null);
-  const isPlaying = React.useRef(false);
 
-  const handleMouseEnter = async () => {
-    if (videoRef.current && !isPlaying.current) {
-      try {
-        await videoRef.current.play();
-        isPlaying.current = true;
-      } catch (error) {
-        console.error('Error playing video:', error);
-      }
+  // Play video on hover
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
     }
   };
 
+  // Pause video when not hovering
   const handleMouseLeave = () => {
-    if (videoRef.current && isPlaying.current) {
+    if (videoRef.current) {
       videoRef.current.pause();
-      isPlaying.current = false;
     }
   };
 
   return (
-    <div className="hover:scale-110 transition-transform duration-200">
-      <video
-        width="320"
-        height="240"
-        ref={videoRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        controls
-        loop
-      >
-        <source src={src} type="video/quicktime"/>
+    <div className="custom-hover-transform"
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave}>
+      <video width="150" height="150" controls ref={videoRef}>
+        <source src={src} type="video/mp4"/>
         Your browser does not support the video tag.
       </video>
     </div>
   );
 };
-
