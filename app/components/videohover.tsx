@@ -1,23 +1,24 @@
-import React from "react";
+import React, {useRef} from 'react';
 
 interface VideoHoverProps {
   src: string;
 }
 
-export const VideoHover = ({src}: VideoHoverProps) => {
-  const videoRef = React.useRef(null);
+export const VideoHover: React.FC<VideoHoverProps> = ({src}) => {
+  // Explicitly type the ref as a HTMLVideoElement
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Play video on hover
   const handleMouseEnter = () => {
     if (videoRef.current) {
-      videoRef.current.play();
+      videoRef.current?.play();
     }
   };
 
   // Pause video when not hovering
   const handleMouseLeave = () => {
     if (videoRef.current) {
-      videoRef.current.pause();
+      videoRef.current?.pause();
     }
   };
 
