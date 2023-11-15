@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import {usePathname} from 'next/navigation';
+import {VideoHover} from "@/app/components/videohover";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -18,8 +19,8 @@ export default function Navbar() {
         <div className="flex flex-col justify-between p-10 h-screen">
           {/* Logo or Title */}
           <div>
-            <h1 className="text-4xl font-light mb-10">David Olagunju</h1>
-            <h2 className="text-2xl font-light mb-10">Creator & Developer</h2>
+            <h1 className="text-4xl text-gray-300 mb-10">David Olagunju</h1>
+            <h2 className="text-2xl text-gray-300 mb-10">Creator & Developer</h2>
           </div>
           {/* Navigation Links */}
           <div className="flex flex-col flex-grow justify-center">
@@ -32,6 +33,15 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
+          </div>
+
+          <div className="flex ">
+            <div className="vertical-text text-white flex items-center text-xs">
+              HIGHLIGHTS
+            </div>
+            <div className="w-18 h-18 ">
+              <VideoHover src="/marseille.mov"/>
+            </div>
           </div>
         </div>
       </nav>

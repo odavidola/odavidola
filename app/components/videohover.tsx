@@ -23,7 +23,7 @@ export const VideoHover: React.FC<VideoHoverProps> = ({src}) => {
   };
 
   return (
-    <div className="custom-hover-transform"
+    <div className="custom-hover-transform border border-white"
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}>
       <video width="150" height="150" controls ref={videoRef}>
