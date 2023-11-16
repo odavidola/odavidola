@@ -30,6 +30,6 @@ section {
 }
 
 .custom-hover-transform:hover {
-  transform: scale(2) translate(30%, -25%);
+  transform: scale(2.5) translate(-30%, -25%);
   transition: transform 1s;
 }

@@ -26,7 +26,7 @@ export const VideoHover: React.FC<VideoHoverProps> = ({src}) => {
     <div className="custom-hover-transform border border-white"
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}>
-      <video width="150" height="150" controls ref={videoRef}>
+      <video width="100" height="100" controls ref={videoRef}>
         <source src={src} type="video/mp4"/>
         Your browser does not support the video tag.
       </video>

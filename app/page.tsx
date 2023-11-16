@@ -1,6 +1,8 @@
+'use client';
 import React, {FC} from 'react';
 import {ContactLink} from "@/app/components/contactlink";
 import {GitHubIcon, LinkedInIcon, TwitterIcon} from "@/app/components/icons";
+import {VideoHover} from "@/app/components/videohover";
 
 const HomePage: FC = () => {
   return (
@@ -11,6 +13,14 @@ const HomePage: FC = () => {
           <ContactLink name={"LinkedIn"} link={'https://www.linkedin.com/in/david-olagunju-143aa8a7/'}
                        icon={<LinkedInIcon/>}/>
           <ContactLink name={"Github"} link={'https://github.com/odavidola'} icon={<GitHubIcon/>}/>
+        </div>
+        <div className="flex ">
+          <div className="">
+            <VideoHover src="/marseille.mov"/>
+          </div>
+          <div className="vertical-text text-white flex items-center text-xs">
+            HIGHLIGHTS
+          </div>
         </div>
         <div className="text-sm mt-10 w-125">
           <p>Born in 1996</p>
