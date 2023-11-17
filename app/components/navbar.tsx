@@ -18,8 +18,8 @@ export default function Navbar() {
         <div className="flex flex-col justify-between p-10 h-screen">
           {/* Logo or Title */}
           <div>
-            <h1 className="text-4xl text-gray-200 mb-10">David Olagunju</h1>
-            <h2 className="text-2xl text-gray-200 mb-10">Creator & Developer</h2>
+            <h1 className="text-4xl text-gray-300 mb-10">David Olagunju</h1>
+            <h2 className="text-2xl text-gray-300 mb-10">Creator & Developer</h2>
           </div>
           {/* Navigation Links */}
           <div className="flex flex-col flex-grow justify-center">
