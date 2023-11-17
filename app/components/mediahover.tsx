@@ -21,8 +21,8 @@ export const MediaHover = () => {
   }, []);
 
   const isMobile = useMemo(() => {
-    return window.matchMedia("(max-width: 768px)").matches;
-  }, [currentMediaIndex]);
+    if (typeof window !== 'undefined') return window.matchMedia("(max-width: 768px)").matches;
+  }, []);
 
   // Get the current media item
   const {type, src} = mediaList[currentMediaIndex];
