@@ -9,7 +9,7 @@ const mediaList = [
 ];
 
 export const MediaHover = () => {
-  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(-1);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>();
   const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -39,26 +39,30 @@ export const MediaHover = () => {
     }
   }, []);
 
+  const isValidMediaIndex = currentMediaIndex >= 0 && currentMediaIndex < mediaList.length;
+
   const handleMouseEnter = () => {
-    if (videoRef.current) {
+    if (videoRef.current && isValidMediaIndex) {
       videoRef.current?.play();
     }
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    if (videoRef.current && isValidMediaIndex) {
       videoRef.current?.pause();
     }
   };
 
+
   const {
-    type,
-    src
-  } = currentMediaIndex >= 0 && currentMediaIndex < mediaList.length ? mediaList[currentMediaIndex] : {};
+    type = '',
+    src = ''
+  } = isValidMediaIndex ? mediaList[currentMediaIndex] : {};
 
   const isMobile = useMemo(() => {
     return isClient && window.matchMedia("(max-width: 768px)").matches;
   }, [isClient]);
+
 
   return (
     <div className="custom-hover-transform"
