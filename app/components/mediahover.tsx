@@ -8,6 +8,11 @@ const mediaList = [
   {type: 'video', src: '/ny.mov'},
 ];
 
+const isMobileView = () => {
+  // This checks if the screen width is less than or equal to 768 pixels
+  return window.matchMedia("(max-width: 768px)").matches;
+};
+
 export const MediaHover = () => {
   // Explicitly type the ref as ¡a HTMLVideoElement
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -32,7 +37,9 @@ export const MediaHover = () => {
         {type === 'image' ? (
           <Image width="100" height="100" src={src} alt="Highlights"/>
         ) : (
-          <video width="100" height="100" autoPlay loop src={src}/>
+          <video width="100" height="100" autoPlay={!isMobileView()} loop={!isMobileView()} controls={isMobileView()}
+                 src={src}
+                 controlsList="nodownload noplaybackrate noplaybackrate nodirectionsubmenu"/>
         )}
       </div>
     </div>
