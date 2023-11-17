@@ -35,7 +35,7 @@ export const MediaHover = () => {
           <Image width="100" height="100" src={src} alt="Highlights"/>
         ) : (
           <video width="100" height="100" autoPlay={!isMobile} loop={!isMobile} controls={isMobile}
-                 muted
+                 muted={true}
                  src={src}
                  controlsList="nodownload noplaybackrate noplaybackrate nodirectionsubmenu"/>
         )}
