@@ -22,7 +22,7 @@ export const MediaHover = () => {
 
   const isMobile = useMemo(() => {
     return window.matchMedia("(max-width: 768px)").matches;
-  }, []);
+  }, [currentMediaIndex]);
 
   // Get the current media item
   const {type, src} = mediaList[currentMediaIndex];
