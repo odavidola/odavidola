@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Image from 'next/image';
 
 const mediaList = [
@@ -8,13 +8,7 @@ const mediaList = [
   {type: 'video', src: '/ny.mov'},
 ];
 
-const isMobileView = () => {
-  // This checks if the screen width is less than or equal to 768 pixels
-  return window.matchMedia("(max-width: 768px)").matches;
-};
-
 export const MediaHover = () => {
-  // Explicitly type the ref as ¡a HTMLVideoElement
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
   useEffect(() => {
@@ -23,8 +17,11 @@ export const MediaHover = () => {
       setCurrentMediaIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
     }, 10000);
 
-    // Clear the timer when the component unmounts
     return () => clearInterval(timer);
+  }, []);
+
+  const isMobile = useMemo(() => {
+    return window.matchMedia("(max-width: 768px)").matches;
   }, []);
 
   // Get the current media item
@@ -37,7 +34,8 @@ export const MediaHover = () => {
         {type === 'image' ? (
           <Image width="100" height="100" src={src} alt="Highlights"/>
         ) : (
-          <video width="100" height="100" autoPlay={!isMobileView()} loop={!isMobileView()} controls={isMobileView()}
+          <video width="100" height="100" autoPlay={!isMobile} loop={!isMobile} controls={isMobile}
+                 muted
                  src={src}
                  controlsList="nodownload noplaybackrate noplaybackrate nodirectionsubmenu"/>
         )}
