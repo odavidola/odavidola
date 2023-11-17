@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="flex flex-col flex-grow justify-center">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path} className="hover:text-gray-300">
+              <Link key={item.path} href={item.path} className="hover:text-gray-300 font-bold">
                 {pathname === item.path ? (
                   '•'
                 ) : (

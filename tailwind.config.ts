@@ -15,7 +15,7 @@ const config: Config = {
         nine: '9px'
       },
       fontFamily: {
-        sans: ['var(--font-graphik)'],
+        sans: ['Graphik'],
       },
       filter: 'contrast(310%) brightness(150%)',
       backgroundImage: {

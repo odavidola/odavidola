@@ -10,37 +10,36 @@ const mediaList = [
 
 export const MediaHover = () => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    // Set up a timer to change the media every 10 seconds
+    setIsClient(true);
+
     const timer = setInterval(() => {
       setCurrentMediaIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
-    }, 10000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, []);
 
-  // Play video on hover
   const handleMouseEnter = () => {
     if (videoRef.current) {
       videoRef.current?.play();
     }
   };
 
-  // Pause video when not hovering
   const handleMouseLeave = () => {
     if (videoRef.current) {
       videoRef.current?.pause();
     }
   };
 
-  const isMobile = useMemo(() => {
-    if (typeof window !== 'undefined') return window.matchMedia("(max-width: 768px)").matches;
-  }, []);
-
-  // Get the current media item
   const {type, src} = mediaList[currentMediaIndex];
+
+  const isMobile = useMemo(() => {
+    return isClient && window.matchMedia("(max-width: 768px)").matches;
+  }, [isClient]);
 
   return (
     <div className="custom-hover-transform"
@@ -51,11 +50,15 @@ export const MediaHover = () => {
         {type === 'image' ? (
           <Image width="100" height="100" src={src} alt="Highlights"/>
         ) : (
-          <video width="100" height="100" autoPlay={!isMobile} controls={isMobile}
-                 muted={true}
-                 src={src}
-                 ref={videoRef}
-                 controlsList="nodownload noplaybackrate noplaybackrate nodirectionsubmenu"/>
+          <video
+            width="100"
+            height="100"
+            autoPlay={!isMobile ?? undefined}
+            playsInline
+            muted
+            src={src}
+            ref={videoRef}
+            controlsList="nodownload noplaybackrate nodirectionsubmenu"/>
         )}
       </div>
     </div>
