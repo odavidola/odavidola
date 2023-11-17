@@ -2,7 +2,7 @@
 import React, {FC} from 'react';
 import {ContactLink} from "@/app/components/contactlink";
 import {GitHubIcon, LinkedInIcon, TwitterIcon} from "@/app/components/icons";
-import {VideoHover} from "@/app/components/videohover";
+import {MediaHover} from "@/app/components/mediahover";
 
 const HomePage: FC = () => {
   return (
@@ -15,9 +15,7 @@ const HomePage: FC = () => {
           <ContactLink name={"Github"} link={'https://github.com/odavidola'} icon={<GitHubIcon/>}/>
         </div>
         <div className="flex ">
-          <div className="">
-            <VideoHover src="/marseille.mov"/>
-          </div>
+          <MediaHover/>
           <div className="vertical-text text-white flex items-center text-xs">
             HIGHLIGHTS
           </div>
