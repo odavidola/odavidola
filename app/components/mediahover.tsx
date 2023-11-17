@@ -51,7 +51,7 @@ export const MediaHover = () => {
         {type === 'image' ? (
           <Image width="100" height="100" src={src} alt="Highlights"/>
         ) : (
-          <video width="100" height="100" autoPlay controls={isMobile}
+          <video width="100" height="100" autoPlay={!isMobile} controls={isMobile}
                  muted={true}
                  src={src}
                  ref={videoRef}
