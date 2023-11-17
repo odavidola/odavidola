@@ -9,7 +9,7 @@ const mediaList = [
 ];
 
 export const MediaHover = () => {
-  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>();
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(-1);
   const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
