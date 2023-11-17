@@ -9,18 +9,35 @@ const mediaList = [
 ];
 
 export const MediaHover = () => {
-  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>();
   const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     setIsClient(true);
 
-    const timer = setInterval(() => {
-      setCurrentMediaIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
-    }, 10000); // rotate every 10 seconds
+    const thirtySeconds = 30000;
+    const currentTime = new Date().getTime();
 
-    return () => clearInterval(timer);
+    const lastUpdateTime = localStorage.getItem('lastUpdateTime');
+    const savedIndex = localStorage.getItem('currentMediaIndex');
+
+
+    if (lastUpdateTime && savedIndex) {
+      const elapsedTime = currentTime - parseInt(lastUpdateTime);
+      if (elapsedTime >= thirtySeconds) {
+        const newIndex = (parseInt(savedIndex) + 1) % mediaList.length;
+        setCurrentMediaIndex(newIndex);
+        localStorage.setItem('currentMediaIndex', newIndex.toString());
+        localStorage.setItem('lastUpdateTime', currentTime.toString());
+      } else {
+        setCurrentMediaIndex(parseInt(savedIndex));
+      }
+    } else {
+      // No data in localStorage, initialize it
+      localStorage.setItem('currentMediaIndex', '0');
+      localStorage.setItem('lastUpdateTime', currentTime.toString());
+    }
   }, []);
 
   const handleMouseEnter = () => {
@@ -35,7 +52,10 @@ export const MediaHover = () => {
     }
   };
 
-  const {type, src} = mediaList[currentMediaIndex];
+  const {
+    type,
+    src
+  } = currentMediaIndex >= 0 && currentMediaIndex < mediaList.length ? mediaList[currentMediaIndex] : {};
 
   const isMobile = useMemo(() => {
     return isClient && window.matchMedia("(max-width: 768px)").matches;
