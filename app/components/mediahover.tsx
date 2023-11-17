@@ -18,7 +18,7 @@ export const MediaHover = () => {
 
     const timer = setInterval(() => {
       setCurrentMediaIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
-    }, 5000);
+    }, 10000); // rotate every 10 seconds
 
     return () => clearInterval(timer);
   }, []);
@@ -54,6 +54,7 @@ export const MediaHover = () => {
             width="100"
             height="100"
             autoPlay={!isMobile ?? undefined}
+            controls={isMobile}
             playsInline
             muted
             src={src}

@@ -27,7 +27,7 @@
   font-family: Raleway;
   src: local(Raleway), url(/fonts/Raleway-VariableFont_wght.ttf) format("truetype");
   font-display: swap;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 body {
