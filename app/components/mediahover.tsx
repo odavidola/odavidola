@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import Image from 'next/image';
 
 const mediaList = [
@@ -10,6 +10,7 @@ const mediaList = [
 
 export const MediaHover = () => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     // Set up a timer to change the media every 10 seconds
@@ -20,6 +21,20 @@ export const MediaHover = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Play video on hover
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current?.play();
+    }
+  };
+
+  // Pause video when not hovering
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current?.pause();
+    }
+  };
+
   const isMobile = useMemo(() => {
     if (typeof window !== 'undefined') return window.matchMedia("(max-width: 768px)").matches;
   }, []);
@@ -29,14 +44,17 @@ export const MediaHover = () => {
 
   return (
     <div className="custom-hover-transform"
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave}
     >
       <div>
         {type === 'image' ? (
           <Image width="100" height="100" src={src} alt="Highlights"/>
         ) : (
-          <video width="100" height="100" autoPlay={!isMobile} loop={!isMobile} controls={isMobile}
+          <video width="100" height="100" autoPlay controls={isMobile}
                  muted={true}
                  src={src}
+                 ref={videoRef}
                  controlsList="nodownload noplaybackrate noplaybackrate nodirectionsubmenu"/>
         )}
       </div>
