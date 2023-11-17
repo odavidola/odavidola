@@ -57,7 +57,7 @@ export const MediaHover = () => {
   const {
     type = '',
     src = ''
-  } = isValidMediaIndex ? mediaList[currentMediaIndex] : {};
+  } = isValidMediaIndex ? mediaList[currentMediaIndex] : mediaList[0];
 
   const isMobile = useMemo(() => {
     return isClient && window.matchMedia("(max-width: 768px)").matches;
