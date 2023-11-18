@@ -42,13 +42,15 @@ export const MediaHover = () => {
   const isValidMediaIndex = currentMediaIndex >= 0 && currentMediaIndex < mediaList.length;
 
   const handleMouseEnter = () => {
-    if (videoRef.current && isValidMediaIndex) {
-      videoRef.current?.play();
+    if (videoRef.current && videoRef.current?.paused) {
+      videoRef.current?.play().catch(error => {
+        console.error('Error trying to play the video:', error);
+      });
     }
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current && isValidMediaIndex) {
+    if (videoRef.current && !videoRef.current?.paused) {
       videoRef.current?.pause();
     }
   };
