@@ -9,7 +9,7 @@ const mediaList = [
 ];
 
 export const MediaHover = () => {
-  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(-1);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>();
   const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -36,6 +36,7 @@ export const MediaHover = () => {
       // No data in localStorage, initialize it
       localStorage.setItem('currentMediaIndex', '0');
       localStorage.setItem('lastUpdateTime', currentTime.toString());
+      setCurrentMediaIndex(0)
     }
   }, []);
 
@@ -59,7 +60,7 @@ export const MediaHover = () => {
   const {
     type = '',
     src = ''
-  } = isValidMediaIndex ? mediaList[currentMediaIndex] : mediaList[0];
+  } = mediaList[currentMediaIndex] ?? {};
 
   const isMobile = useMemo(() => {
     return isClient && window.matchMedia("(max-width: 768px)").matches;
@@ -67,26 +68,27 @@ export const MediaHover = () => {
 
 
   return (
-    <div className="custom-hover-transform"
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave}
-    >
-      <div>
-        {type === 'image' ? (
-          <Image width="100" height="100" src={src} alt="Highlights"/>
-        ) : (
-          <video
-            width="100"
-            height="100"
-            autoPlay={!isMobile ?? undefined}
-            controls={isMobile}
-            playsInline
-            muted
-            src={src}
-            ref={videoRef}
-            controlsList="nodownload noplaybackrate nodirectionsubmenu"/>
-        )}
+    isValidMediaIndex && (
+      <div className="custom-hover-transform"
+           onMouseEnter={handleMouseEnter}
+           onMouseLeave={handleMouseLeave}
+      >
+        <div>
+          {type === 'image' ? (
+            <Image width="100" height="100" src={src} alt="Highlights"/>
+          ) : (
+            <video
+              width="100"
+              height="100"
+              autoPlay={!isMobile ?? undefined}
+              controls={isMobile}
+              playsInline
+              muted
+              src={src}
+              ref={videoRef}
+              controlsList="nodownload noplaybackrate nodirectionsubmenu"/>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    ));
 };

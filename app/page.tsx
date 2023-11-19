@@ -1,5 +1,5 @@
 'use client';
-import React, {FC} from 'react';
+import React, {FC, Suspense} from 'react';
 import {ContactLink} from "@/app/components/contactlink";
 import {GitHubIcon, LinkedInIcon, TwitterIcon} from "@/app/components/icons";
 import {MediaHover} from "@/app/components/mediahover";
@@ -15,7 +15,9 @@ const HomePage: FC = () => {
           <ContactLink name={"Github"} link={'https://github.com/odavidola'} icon={<GitHubIcon/>}/>
         </div>
         <div className="flex ">
-          <MediaHover/>
+          <Suspense fallback={<></>}>
+            <MediaHover/>
+          </Suspense>
           <div className="vertical-text text-white flex items-center text-xs">
             HIGHLIGHTS
           </div>
