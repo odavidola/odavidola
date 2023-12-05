@@ -31,7 +31,7 @@ export default function RootLayout(
       <link rel="icon" href="favicon.ico"/>
     </Head>
     <body>
-    <div className="flex min-h-screen bg-noise text-white bg-cover bg-center bg-no-repeat z-[-1] overflow-scroll">
+    <div className="flex min-h-screen bg-noise text-white bg-cover bg-center bg-no-repeat z-[-1] overflow-auto">
       <Navbar/>
       <main className="w-3/4 h-screen p-5">
         {children}
