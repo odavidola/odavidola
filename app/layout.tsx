@@ -8,8 +8,9 @@ import Head from "next/head";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://odola.xyz'),
-  title: 'David Olagunju',
-  description: 'Portfolio of a budding creator...',
+  title: 'David Olagunju - Creator & Developer',
+  description: 'Explore the portfolio of David Olagunju, a budding creator and developer.',
+  keywords: 'David Olagunju, creator, developer, portfolio',
   robots: {
     index: true,
     follow: true
