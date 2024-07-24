@@ -1,15 +1,14 @@
-'use client';
+"use client";
 import React from "react";
 import Link from "next/link";
-import {usePathname} from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   const navItems = [
-    {name: 'Home', path: '/'},
-    {name: 'Projects', path: '/projects'},
-    {name: 'Blogs', path: '/blogs'},
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/projects" },
   ];
 
   return (
@@ -19,17 +18,19 @@ export default function Navbar() {
           {/* Logo or Title */}
           <div>
             <h1 className="text-4xl text-gray-300 mb-10">David Olagunju</h1>
-            <h2 className="text-2xl text-gray-300 mb-10">Creator & Developer</h2>
+            <h2 className="text-2xl text-gray-300 mb-10">
+              Creator & Developer
+            </h2>
           </div>
           {/* Navigation Links */}
           <div className="flex flex-col flex-grow justify-center">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path} className="hover:text-gray-300">
-                {pathname === item.path ? (
-                  '•'
-                ) : (
-                  item.name
-                )}
+              <Link
+                key={item.path}
+                href={item.path}
+                className="hover:text-gray-300"
+              >
+                {pathname === item.path ? "•" : item.name}
               </Link>
             ))}
           </div>
@@ -38,5 +39,3 @@ export default function Navbar() {
     </aside>
   );
 }
-
-
