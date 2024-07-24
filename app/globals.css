@@ -48,6 +48,6 @@ h1, h2 {
 }
 
 .custom-hover-transform:hover {
-  transform: scale(2.8) translate(-34%, -25%);
+  transform: scale(2.8) translate(-34%, 25%);
   transition: transform 1s;
 }
