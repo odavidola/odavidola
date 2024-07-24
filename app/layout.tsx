@@ -8,7 +8,7 @@ import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://odola.xyz"),
+  metadataBase: new URL("https://odavidola.com"),
   title: "David Olagunju - Creator & Developer",
   description:
     "Explore the portfolio of David Olagunju, a budding creator and developer.",
