@@ -1,48 +1,57 @@
 import "./globals.css";
-import clsx from "clsx";
-import type { Metadata } from "next";
-
-import Navbar from "@/app/components/navbar";
+import type { Metadata, Viewport } from "next";
+import { Roboto_Flex, Instrument_Sans, DM_Mono, Newsreader } from "next/font/google";
 import React from "react";
-import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
+import { SiteHeader } from "@/app/components/site-header";
+
+const display = Roboto_Flex({ subsets: ["latin"], axes: ["wdth"], variable: "--font-display", display: "swap" });
+const body = Instrument_Sans({ subsets: ["latin"], axes: ["wdth"], variable: "--font-body", display: "swap" });
+const mono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
+const serif = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif", display: "swap" });
+
+const TITLE = "David Olagunju — Senior AI Product Engineer";
+const DESCRIPTION = "Senior AI Product Engineer in London. Eight years building front-office trading systems at Marex, JPMorgan and BNP Paribas. Creator of Moko, a live audio-ML piano teacher, and Ebb, an on-device iOS app.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://odavidola.com"),
-  title: "David Olagunju - Creator & Developer",
-  description:
-    "Explore the portfolio of David Olagunju, a budding creator and developer.",
-  keywords: "David Olagunju, creator, developer, portfolio",
-  robots: {
-    index: true,
-    follow: true,
-  },
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: "David Olagunju, AI product engineer, senior software engineer, full stack, React, TypeScript, Python, Swift, London",
+  authors: [{ name: "David Olagunju", url: "https://odavidola.com" }],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://odavidola.com", siteName: "David Olagunju", type: "website" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, creator: "@ODavidOlagunju" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = { themeColor: "#f9f9f6", colorScheme: "light" };
+
+const PERSON = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "David Olagunju",
+  url: "https://odavidola.com",
+  jobTitle: "Senior AI Product Engineer",
+  address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+  knowsAbout: ["TypeScript", "React", "Python", "Swift", "Applied AI", "Audio machine learning"],
+  sameAs: ["https://github.com/odavidola", "https://www.linkedin.com/in/david-olagunju-143aa8a7/", "https://twitter.com/ODavidOlagunju"],
+};
+
+/** Prefetch and prerender what a visitor is about to open: the work, then the live app. */
+const SPECULATION = { prefetch: [{ where: { href_matches: "/*" }, eagerness: "moderate" }] };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={clsx(
-        "text-black bg-white dark:text-white dark:bg-[#111010] border border-white m-5",
-      )}
-    >
-      <Head>
-        <title>David Olagunju - Creator & Developer</title>
-        <link rel="icon" href="favicon.ico" />
-      </Head>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable} ${serif.variable}`}>
       <body>
-        <div className="flex min-h-screen bg-noise text-white bg-cover bg-center bg-no-repeat z-[-1] overflow-auto">
-          <Navbar />
-          <main className="w-3/4 h-screen p-5">
-            {children}
-            <Analytics />
-          </main>
-        </div>
+        <a href="#moko" className="skip">Skip to the work</a>
+        <div className="progress" aria-hidden="true" />
+        <SiteHeader />
+        <main>{children}</main>
+        <Analytics />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON) }} />
+        <script type="speculationrules" dangerouslySetInnerHTML={{ __html: JSON.stringify(SPECULATION) }} />
       </body>
     </html>
   );
