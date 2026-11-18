@@ -25,7 +25,7 @@ const NAMED: Record<number, Named> = {
   72: { id: "contact", label: "Contact", color: "#f05a3c" },
 };
 
-/** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ; */
+/** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ;  The piano spans exactly these keys, C4 to E5, so every key has a letter. */
 const KEYMAP: Record<string, number> = { a: 60, w: 61, s: 62, e: 63, d: 64, f: 65, t: 66, g: 67, y: 68, h: 69, u: 70, j: 71, k: 72, o: 73, l: 74, p: 75, ";": 76 };
 
 /** Every key carries a coloured cap from this palette, and flares in it when played. */
@@ -53,7 +53,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
   const [hint, setHint] = useState(true);
   const preview = (m: number | null) => onPreview?.(m !== null && NAMED[m] ? NAMED[m].label : null);
   const stopMic = useRef<(() => void) | null>(null);
-  const keys = buildKeys(14);
+  const keys = buildKeys(10);
 
   const sound = useCallback((midi: number) => pluck(midi), []);
 
@@ -141,7 +141,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
   };
 
   const lit = (midi: number) => down.has(midi) || heard === midi;
-  const whiteCount = 14;
+  const whiteCount = 10;
 
   return (
     <div className="piano-wrap">
@@ -192,7 +192,9 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
             onPointerDown={(e) => { e.preventDefault(); press(k.midi); }}
             aria-label={noteName(k.midi)}
             tabIndex={-1}
-          />
+          >
+            {LEGEND[k.midi] && <span className="legend" aria-hidden="true">{LEGEND[k.midi]}</span>}
+          </button>
         ))}
       </div>
     </div>
