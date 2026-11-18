@@ -11,7 +11,9 @@ export function SiteHeader() {
   useEffect(() => {
     let raf = 0;
     const update = () => {
-      const el = document.elementFromPoint(window.innerWidth / 2, 22)?.closest<HTMLElement>("[data-tone]");
+      // Look at what is under the bar (just below it), never at the bar itself.
+      const below = (ref.current?.offsetHeight ?? 56) + 6;
+      const el = document.elementsFromPoint(window.innerWidth / 2, below).map((e) => e.closest<HTMLElement>("[data-tone]")).find((e) => e && e !== ref.current);
       if (el && ref.current) ref.current.dataset.tone = el.dataset.tone ?? "light";
       const mid = window.innerHeight * 0.4;
       const current = LINKS.map(([id]) => document.getElementById(id)).find((s) => s && s.getBoundingClientRect().top <= mid && s.getBoundingClientRect().bottom > mid);

@@ -119,7 +119,7 @@ export function MokoStage() {
     const paint = (p: number) => {
       draw(cv, Math.min(1, p / 0.7));
       // the pipeline's last frame hands over to the real app
-      const reveal = ease((p - 0.76) / 0.12);
+      const reveal = ease((p - 0.72) / 0.12);
       right.style.setProperty("--reveal", reveal.toFixed(3));
       right.dataset.live = reveal > 0.6 ? "true" : "false";
       const idx = p < 0.27 ? 0 : p < 0.52 ? 1 : 2;
@@ -146,7 +146,7 @@ export function MokoStage() {
   }, []);
 
   return (
-    <section ref={root} id="moko" className="moko" data-tone="dark">
+    <section ref={root} id="moko" className="moko" data-tone="blue">
       <div className="moko-track">
       <div className="moko-pin">
         <div className="moko-copy">

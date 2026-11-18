@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { audio, pluck } from "@/lib/audio-bus";
+import { audio, pluck, prefetchPiano, warmPiano } from "@/lib/audio-bus";
 
 /**
  * The site's front door: a playable piano. Every key sounds (Web Audio, no samples); five of them are
@@ -82,7 +82,13 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
     return () => removeEventListener("keydown", onKey);
   }, [press]);
 
-  useEffect(() => () => { stopMic.current?.(); }, []);
+  useEffect(() => {
+    // Warm the samples once the page has settled, so the first key already sounds like a piano.
+    const t = window.setTimeout(() => void prefetchPiano(), 1200);
+    const first = () => { warmPiano(); (["pointerdown", "keydown", "touchstart"] as const).forEach((e) => removeEventListener(e, first)); };
+    (["pointerdown", "keydown", "touchstart"] as const).forEach((e) => addEventListener(e, first, { passive: true }));
+    return () => { window.clearTimeout(t); (["pointerdown", "keydown", "touchstart"] as const).forEach((e) => removeEventListener(e, first)); stopMic.current?.(); };
+  }, []);
 
   /** Hear one note at a time: autocorrelation on the microphone signal. */
   const listen = async () => {

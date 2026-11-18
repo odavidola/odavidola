@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, creator: "@ODavidOlagunju" },
 };
 
-export const viewport: Viewport = { themeColor: "#f9f9f6", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: "#f9f9f6", colorScheme: "light", viewportFit: "cover" };
 
 const PERSON = {
   "@context": "https://schema.org",
