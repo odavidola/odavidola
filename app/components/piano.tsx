@@ -18,15 +18,19 @@ const NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 type Named = { id: string; label: string; color: string };
 const NAMED: Record<number, Named> = {
-  60: { id: "moko", label: "Moko", color: "var(--blue)" },
-  64: { id: "ebb", label: "Ebb", color: "var(--green)" },
-  67: { id: "work", label: "Experience", color: "var(--ink)" },
-  71: { id: "music", label: "Music", color: "var(--coral)" },
-  72: { id: "contact", label: "Contact", color: "var(--sun)" },
+  60: { id: "moko", label: "Moko", color: "#5b78ff" },
+  64: { id: "ebb", label: "Ebb", color: "#a193ff" },
+  67: { id: "work", label: "Experience", color: "#f5e100" },
+  71: { id: "music", label: "Music", color: "#00e5d1" },
+  72: { id: "contact", label: "Contact", color: "#ff6a45" },
 };
 
 /** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ; */
 const KEYMAP: Record<string, number> = { a: 60, w: 61, s: 62, e: 63, d: 64, f: 65, t: 66, g: 67, y: 68, h: 69, u: 70, j: 71, k: 72, o: 73, l: 74, p: 75, ";": 76 };
+
+/** Unnamed keys light in a rotating neon palette when played. */
+const NEON = ["#5b78ff", "#a193ff", "#ff2bd6", "#f5e100", "#00e5d1", "#ff6a45"];
+const LEGEND: Record<number, string> = Object.fromEntries(Object.entries(KEYMAP).map(([k, m]) => [m, k === ";" ? ";" : k.toUpperCase()]));
 
 const noteName = (m: number) => `${NAMES[m % 12]}${Math.floor(m / 12) - 1}`;
 
@@ -143,7 +147,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
     <div className="piano-wrap">
       <div className="piano-bar">
         <p className="piano-hint" data-hidden={!hint}>
-          <span className="blink" aria-hidden="true" /> Play it. The coloured keys open the work.
+          <span className="prompt" aria-hidden="true">&gt;</span> Play it. The coloured keys open the work.<span className="cursor" aria-hidden="true" />
         </p>
         <button type="button" className="listen" data-on={listening} onClick={listen} aria-pressed={listening}>
           <span className="rec" aria-hidden="true" />
@@ -162,7 +166,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
                 data-on={lit(k.midi)}
                 data-named={!!named}
                 data-mobile-hide={k.index >= 8}
-                style={{ ["--c" as string]: named?.color }}
+                style={{ ["--c" as string]: named?.color, ["--k" as string]: named?.color ?? NEON[k.index % NEON.length] }}
                 onPointerEnter={() => preview(k.midi)}
                 onPointerLeave={() => preview(null)}
                 onFocus={() => preview(k.midi)}
@@ -171,6 +175,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); press(k.midi); } }}
                 aria-label={named ? `${noteName(k.midi)}: open ${named.label}` : noteName(k.midi)}
               >
+                {LEGEND[k.midi] && <span className="legend" aria-hidden="true">{LEGEND[k.midi]}</span>}
                 {named && <span className="tag">{named.label}</span>}
               </button>
             );
@@ -183,7 +188,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
             className="key black"
             data-on={lit(k.midi)}
             data-mobile-hide={k.index >= 7}
-            style={{ ["--i" as string]: k.index }}
+            style={{ ["--i" as string]: k.index, ["--k" as string]: NEON[(k.index + 3) % NEON.length] }}
             onPointerDown={(e) => { e.preventDefault(); press(k.midi); }}
             aria-label={noteName(k.midi)}
             tabIndex={-1}
