@@ -18,15 +18,19 @@ const NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 type Named = { id: string; label: string; color: string };
 const NAMED: Record<number, Named> = {
-  60: { id: "moko", label: "Moko", color: "var(--blue)" },
-  64: { id: "ebb", label: "Ebb", color: "var(--green)" },
-  67: { id: "work", label: "Experience", color: "var(--ink)" },
-  71: { id: "music", label: "Music", color: "var(--coral)" },
-  72: { id: "contact", label: "Contact", color: "var(--sun)" },
+  60: { id: "moko", label: "Moko", color: "#354bff" },
+  64: { id: "ebb", label: "Ebb", color: "#8b7bff" },
+  67: { id: "work", label: "Experience", color: "#ffd400" },
+  71: { id: "music", label: "Music", color: "#00c2b2" },
+  72: { id: "contact", label: "Contact", color: "#f05a3c" },
 };
 
-/** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ; */
+/** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ;  The piano spans exactly these keys, C4 to E5, so every key has a letter. */
 const KEYMAP: Record<string, number> = { a: 60, w: 61, s: 62, e: 63, d: 64, f: 65, t: 66, g: 67, y: 68, h: 69, u: 70, j: 71, k: 72, o: 73, l: 74, p: 75, ";": 76 };
+
+/** Every key carries a coloured cap from this palette, and flares in it when played. */
+const NEON = ["#354bff", "#8b7bff", "#ff2bd6", "#ffd400", "#00c2b2", "#f05a3c"];
+const LEGEND: Record<number, string> = Object.fromEntries(Object.entries(KEYMAP).map(([k, m]) => [m, k === ";" ? ";" : k.toUpperCase()]));
 
 const noteName = (m: number) => `${NAMES[m % 12]}${Math.floor(m / 12) - 1}`;
 
@@ -49,7 +53,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
   const [hint, setHint] = useState(true);
   const preview = (m: number | null) => onPreview?.(m !== null && NAMED[m] ? NAMED[m].label : null);
   const stopMic = useRef<(() => void) | null>(null);
-  const keys = buildKeys(14);
+  const keys = buildKeys(10);
 
   const sound = useCallback((midi: number) => pluck(midi), []);
 
@@ -137,13 +141,13 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
   };
 
   const lit = (midi: number) => down.has(midi) || heard === midi;
-  const whiteCount = 14;
+  const whiteCount = 10;
 
   return (
     <div className="piano-wrap">
       <div className="piano-bar">
         <p className="piano-hint" data-hidden={!hint}>
-          <span className="blink" aria-hidden="true" /> Play it. The coloured keys open the work.
+          <span className="prompt" aria-hidden="true">&gt;</span> Play it. The coloured keys open the work.<span className="cursor" aria-hidden="true" />
         </p>
         <button type="button" className="listen" data-on={listening} onClick={listen} aria-pressed={listening}>
           <span className="rec" aria-hidden="true" />
@@ -162,7 +166,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
                 data-on={lit(k.midi)}
                 data-named={!!named}
                 data-mobile-hide={k.index >= 8}
-                style={{ ["--c" as string]: named?.color }}
+                style={{ ["--c" as string]: named?.color, ["--k" as string]: named?.color ?? NEON[k.index % NEON.length] }}
                 onPointerEnter={() => preview(k.midi)}
                 onPointerLeave={() => preview(null)}
                 onFocus={() => preview(k.midi)}
@@ -171,6 +175,7 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); press(k.midi); } }}
                 aria-label={named ? `${noteName(k.midi)}: open ${named.label}` : noteName(k.midi)}
               >
+                {LEGEND[k.midi] && <span className="legend" aria-hidden="true">{LEGEND[k.midi]}</span>}
                 {named && <span className="tag">{named.label}</span>}
               </button>
             );
@@ -183,11 +188,13 @@ export function Piano({ onPreview }: { onPreview?: (label: string | null) => voi
             className="key black"
             data-on={lit(k.midi)}
             data-mobile-hide={k.index >= 7}
-            style={{ ["--i" as string]: k.index }}
+            style={{ ["--i" as string]: k.index, ["--k" as string]: NEON[(k.index + 3) % NEON.length] }}
             onPointerDown={(e) => { e.preventDefault(); press(k.midi); }}
             aria-label={noteName(k.midi)}
             tabIndex={-1}
-          />
+          >
+            {LEGEND[k.midi] && <span className="legend" aria-hidden="true">{LEGEND[k.midi]}</span>}
+          </button>
         ))}
       </div>
     </div>
