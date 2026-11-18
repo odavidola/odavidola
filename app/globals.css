@@ -67,28 +67,27 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
 .listen { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; min-height: 44px; border: 1.5px solid var(--ink); border-radius: 0; background: transparent; font: 500 0.74rem var(--font-mono), monospace; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s, box-shadow 0.2s; }
 .listen::before { content: "["; opacity: 0.5; }
 .listen::after { content: "]"; opacity: 0.5; order: 3; }
-.listen:hover, .listen[data-on="true"] { background: var(--ink); color: #00e5d1; box-shadow: 0 0 0 1px var(--ink), 0 0 22px -2px rgb(0 229 209 / 0.55); }
+.listen:hover, .listen[data-on="true"] { background: var(--ink); color: var(--chalk); box-shadow: 4px 4px 0 var(--orange); }
 .rec { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
 .listen[data-on="true"] .rec { animation: blink 0.7s steps(2, start) infinite; }
 
-/* The deck: a dark chassis, neon underglow that swells with the sound, keycaps that light when played. */
-.piano { --h: clamp(180px, 31vh, 310px); position: relative; height: var(--h); background: #06070a; padding-top: 5px; }
-.piano::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; z-index: 4; background: linear-gradient(90deg, #5b78ff, #a193ff, #ff2bd6, #ff6a45, #f5e100, #00e5d1, #5b78ff); background-size: 200% 100%; animation: glide 9s linear infinite; filter: brightness(calc(1 + var(--lvl, 0) * 1.4)); box-shadow: 0 0 calc(10px + var(--lvl, 0) * 46px) rgb(120 110 255 / calc(0.35 + var(--lvl, 0) * 0.55)); }
+/* The deck, light: chalk keycaps with coloured tops, like a custom keyset. Colour flares only when a key is played. */
+.piano { --h: clamp(180px, 31vh, 310px); position: relative; height: var(--h); background: var(--ink); padding-top: 6px; }
+.piano::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; z-index: 4; background: linear-gradient(90deg, #354bff, #8b7bff, #ff2bd6, #f05a3c, #ffd400, #00c2b2, #354bff); background-size: 200% 100%; animation: glide 10s linear infinite; filter: saturate(calc(1 + var(--lvl, 0) * 0.8)); }
 @keyframes glide { to { background-position: 200% 0; } }
-.piano::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: repeating-linear-gradient(0deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 3px); }
-.whites { display: flex; gap: 3px; height: 100%; background: #06070a; padding: 0 3px; }
+.whites { display: flex; gap: 2px; height: 100%; background: var(--ink); }
 .key { appearance: none; border: 0; padding: 0; margin: 0; cursor: pointer; font: inherit; touch-action: manipulation; }
-.key.white { --k: #5b78ff; flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; padding-bottom: 14px; background: linear-gradient(#262a35, #171a22 70%, #12141b); border-radius: 0 0 7px 7px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 -4px 0 rgb(0 0 0 / 0.5); transition: background 0.1s, box-shadow 0.12s, transform 0.08s; transform-origin: top; }
-.key.white[data-named="true"]::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 7px; background: var(--c); box-shadow: 0 0 16px 1px var(--c); }
-.key.white:hover { background: linear-gradient(#2e3340, #1c2029 70%, #161922); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 -4px 0 rgb(0 0 0 / 0.5), 0 0 0 1px color-mix(in srgb, var(--k) 70%, transparent); }
-.key.white[data-on="true"] { background: linear-gradient(color-mix(in srgb, var(--k) 78%, #fff), var(--k)); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.5), 0 0 34px 2px var(--k), 0 0 90px -6px var(--k); transform: scaleY(0.985); z-index: 1; }
-.key .tag { font: 800 clamp(0.8rem, 1.2vw, 1.15rem) var(--font-display), sans-serif; font-variation-settings: "wdth" 40; text-transform: uppercase; letter-spacing: 0.04em; writing-mode: vertical-rl; transform: rotate(180deg); color: var(--c); text-shadow: 0 0 14px color-mix(in srgb, var(--c) 70%, transparent); }
-.key.white[data-on="true"] .tag { color: #06070a; text-shadow: none; }
-.key .legend { font: 500 0.68rem var(--font-mono), monospace; color: #6c7384; border: 1px solid #343a48; border-radius: 4px; padding: 1px 6px; line-height: 1.5; }
-.key.white[data-on="true"] .legend { color: #06070a; border-color: rgb(6 7 10 / 0.4); }
-.key.black { --k: #ff2bd6; position: absolute; top: 5px; z-index: 2; height: 60%; width: calc((100% - 6px) / var(--whites) * 0.58); left: calc(3px + (var(--i) + 1) * (100% - 6px) / var(--whites) - (100% - 6px) / var(--whites) * 0.29); background: linear-gradient(#0e1015, #050608); border-radius: 0 0 5px 5px; box-shadow: inset 0 -3px 0 var(--k), 0 6px 14px rgb(0 0 0 / 0.55); transition: box-shadow 0.1s, background 0.1s; }
-.key.black:hover { box-shadow: inset 0 -3px 0 var(--k), 0 0 14px -2px var(--k); }
-.key.black[data-on="true"] { background: var(--k); box-shadow: 0 0 30px 2px var(--k), 0 0 80px -6px var(--k); }
+.key.white { --k: #354bff; flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; padding-bottom: 14px; background: linear-gradient(#ffffff, #f4f4ef); box-shadow: inset 0 -5px 0 rgb(16 17 20 / 0.07); transition: background 0.1s, box-shadow 0.14s, transform 0.08s; transform-origin: top; }
+.key.white::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--k); }
+.key.white[data-named="true"]::before { height: 16px; }
+.key.white:hover { background: linear-gradient(#ffffff, #fff); box-shadow: inset 0 -5px 0 rgb(16 17 20 / 0.07), inset 0 0 0 2px color-mix(in srgb, var(--k) 55%, transparent); }
+.key.white[data-on="true"] { background: linear-gradient(color-mix(in srgb, var(--k) 70%, #fff), var(--k)); box-shadow: inset 0 -5px 0 rgb(16 17 20 / 0.12), 0 10px 30px -10px var(--k); transform: scaleY(0.985); z-index: 1; }
+.key .tag { font: 800 clamp(0.8rem, 1.2vw, 1.15rem) var(--font-display), sans-serif; font-variation-settings: "wdth" 40; text-transform: uppercase; letter-spacing: 0.04em; writing-mode: vertical-rl; transform: rotate(180deg); color: var(--ink); }
+.key .legend { font: 500 0.68rem var(--font-mono), monospace; color: rgb(16 17 20 / 0.55); border: 1.5px solid rgb(16 17 20 / 0.22); border-radius: 5px; padding: 1px 6px; line-height: 1.5; background: #fff; }
+.key.white[data-on="true"] .legend { background: rgb(255 255 255 / 0.85); }
+.key.black { --k: #ff2bd6; position: absolute; top: 6px; z-index: 2; height: 60%; width: calc(100% / var(--whites) * 0.58); left: calc((var(--i) + 1) * 100% / var(--whites) - 100% / var(--whites) * 0.29); background: linear-gradient(#25272e, #101114); border-radius: 0 0 5px 5px; box-shadow: inset 0 -4px 0 var(--k); transition: box-shadow 0.1s, background 0.1s; }
+.key.black:hover { background: linear-gradient(#32353e, #1b1c21); }
+.key.black[data-on="true"] { background: var(--k); box-shadow: inset 0 -4px 0 rgb(16 17 20 / 0.25), 0 10px 26px -8px var(--k); }
 @media (hover: none) { .key .legend { display: none; } }
 @media (max-width: 1000px) {
   .mast { grid-template-columns: 1fr; }

@@ -18,18 +18,18 @@ const NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 type Named = { id: string; label: string; color: string };
 const NAMED: Record<number, Named> = {
-  60: { id: "moko", label: "Moko", color: "#5b78ff" },
-  64: { id: "ebb", label: "Ebb", color: "#a193ff" },
-  67: { id: "work", label: "Experience", color: "#f5e100" },
-  71: { id: "music", label: "Music", color: "#00e5d1" },
-  72: { id: "contact", label: "Contact", color: "#ff6a45" },
+  60: { id: "moko", label: "Moko", color: "#354bff" },
+  64: { id: "ebb", label: "Ebb", color: "#8b7bff" },
+  67: { id: "work", label: "Experience", color: "#ffd400" },
+  71: { id: "music", label: "Music", color: "#00c2b2" },
+  72: { id: "contact", label: "Contact", color: "#f05a3c" },
 };
 
 /** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ; */
 const KEYMAP: Record<string, number> = { a: 60, w: 61, s: 62, e: 63, d: 64, f: 65, t: 66, g: 67, y: 68, h: 69, u: 70, j: 71, k: 72, o: 73, l: 74, p: 75, ";": 76 };
 
-/** Unnamed keys light in a rotating neon palette when played. */
-const NEON = ["#5b78ff", "#a193ff", "#ff2bd6", "#f5e100", "#00e5d1", "#ff6a45"];
+/** Every key carries a coloured cap from this palette, and flares in it when played. */
+const NEON = ["#354bff", "#8b7bff", "#ff2bd6", "#ffd400", "#00c2b2", "#f05a3c"];
 const LEGEND: Record<number, string> = Object.fromEntries(Object.entries(KEYMAP).map(([k, m]) => [m, k === ";" ? ";" : k.toUpperCase()]));
 
 const noteName = (m: number) => `${NAMES[m % 12]}${Math.floor(m / 12) - 1}`;
