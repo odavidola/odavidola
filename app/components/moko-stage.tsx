@@ -38,7 +38,7 @@ function draw(c: HTMLCanvasElement, p: number) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, W, H);
   const t1 = ease((p - 0.18) / 0.2), t2 = ease((p - 0.56) / 0.2), t3 = Math.max(0, Math.min(1, (p - 0.8) / 0.2));
-  const chalk = "#f9f9f6", ink = "#101114", orange = "#f05a3c";
+  const chalk = "#f9f9f6", ink = "#101114", orange = "#ff1493";
 
   // 01 the full mix: a waveform that dissolves as the notes arrive.
   if (t1 < 1) {
