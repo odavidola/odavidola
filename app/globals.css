@@ -73,7 +73,7 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
 
 /* The deck, light: chalk keycaps with coloured tops, like a custom keyset. Colour flares only when a key is played. */
 .piano { --h: clamp(180px, 31vh, 310px); position: relative; height: var(--h); background: var(--ink); padding-top: 6px; }
-.piano::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; z-index: 4; background: linear-gradient(90deg, #354bff, #8b7bff, #ff2bd6, #ff1493, #ffd400, #00c2b2, #354bff); background-size: 200% 100%; animation: glide 10s linear infinite; filter: saturate(calc(1 + var(--lvl, 0) * 0.8)); }
+.piano::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; z-index: 4; background: linear-gradient(90deg, #354bff, #8b7bff, #ff2bd6, #ff1493, #354bff, #00c2b2, #ffd400, #00c2b2, #354bff); background-size: 200% 100%; animation: glide 10s linear infinite; filter: saturate(calc(1 + var(--lvl, 0) * 0.8)); }
 @keyframes glide { to { background-position: 200% 0; } }
 .whites { display: flex; gap: 2px; height: 100%; background: var(--ink); }
 .key { appearance: none; border: 0; padding: 0; margin: 0; cursor: pointer; font: inherit; touch-action: manipulation; }
