@@ -54,7 +54,7 @@ export function EbbStage() {
       <div className="ebb-cluster" ref={cluster}>
         {SCREENS.map((s, i) => (
           // eslint-disable-next-line @next/next/no-img-element
-          <img key={s.src} className={`screen s${i}`} data-depth={s.depth} src={s.src} alt={s.alt} width={380} height={826} loading="lazy" />
+          <img key={s.src} className={`screen s${i}`} data-depth={s.depth} src={s.src} alt={s.alt} width={1000} height={2174} loading="lazy" />
         ))}
       </div>
 
