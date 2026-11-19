@@ -25,11 +25,10 @@ export function Hero() {
   return (
     <section ref={root} className="hero" id="top" data-tone="light">
       <div className="mast">
-        <h1 aria-label="Senior AI Product Engineer.">
+        <h1 aria-label="Senior Engineer & Creator.">
           <span className="m-senior" aria-hidden="true">Senior</span>
-          <span className="m-ai" aria-hidden="true">AI</span>
-          <span className="m-product" aria-hidden="true">Product</span>
-          <span className="m-engineer" aria-hidden="true">Engineer<i>.</i></span>
+          <span className="m-engineer" aria-hidden="true">Engineer</span>
+          <span className="m-creator" aria-hidden="true"><i>&amp;</i> Creator<i>.</i></span>
         </h1>
         <aside className="rail" aria-label="At a glance">
           <p className="rail-live" data-on={!!preview}>{preview ? PREVIEWS[preview] : "Play the keys."}</p>

@@ -39,15 +39,16 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
 /* ── Hero ───────────────────────────────────────────── */
 .hero { --lvl: 0; min-height: 100svh; display: flex; flex-direction: column; background: var(--chalk); padding-top: 64px; position: relative; overflow: hidden; }
 .mast { flex: 1; display: grid; grid-template-columns: 1fr minmax(200px, 17vw); gap: var(--gutter); padding: 0 var(--gutter); align-content: center; }
-.hero h1 { font-family: var(--font-display), sans-serif; font-weight: 900; text-transform: uppercase; line-height: 0.82; letter-spacing: -0.02em; display: grid; grid-template-columns: auto 1fr; grid-template-areas: "senior senior" "ai product" "engineer engineer"; align-items: end; column-gap: 0.04em; }
+.hero h1 { font-family: var(--font-display), sans-serif; font-weight: 900; text-transform: uppercase; line-height: 0.82; letter-spacing: -0.02em; display: grid; grid-template-columns: 1fr; grid-template-areas: "senior" "engineer" "creator"; align-items: end; column-gap: 0.04em; }
 .hero h1 span { display: block; }
 .m-senior { grid-area: senior; font-size: clamp(1rem, 2.2vw, 2rem); font-variation-settings: "wdth" 151, "wght" 600; letter-spacing: 0.3em; margin-bottom: 0.5em; }
 .m-ai { grid-area: ai; font-size: clamp(7rem, 24vw, 24rem); color: var(--blue); font-variation-settings: "wdth" calc(40 + var(--lvl) * 70), "wght" 1000; margin-right: -0.02em; }
 .m-product { grid-area: product; font-size: clamp(3.4rem, 11.6vw, 11.6rem); font-variation-settings: "wdth" calc(32 + var(--lvl) * 90), "wght" 900; padding-bottom: 0.1em; }
 .m-engineer { grid-area: engineer; font-size: clamp(4rem, 15.4vw, 15.4rem); font-variation-settings: "wdth" calc(26 + var(--lvl) * 60), "wght" 900; margin-top: -0.04em; }
-.m-engineer i { font-style: normal; color: var(--accent); }
+.m-creator { grid-area: creator; font-size: clamp(3.4rem, 11.6vw, 11.6rem); font-variation-settings: "wdth" calc(32 + var(--lvl) * 90), "wght" 900; margin-top: 0.04em; }
+.m-creator i { font-style: normal; color: var(--accent); }
 .hero h1 span { animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-.m-ai { animation-delay: 0.05s !important; } .m-product { animation-delay: 0.15s !important; } .m-engineer { animation-delay: 0.25s !important; }
+.m-engineer { animation-delay: 0.1s !important; } .m-creator { animation-delay: 0.25s !important; }
 @keyframes rise { from { opacity: 0; transform: translateY(38px); } }
 
 .rail { align-self: end; padding-bottom: 2.4vh; font-size: 0.92rem; border-left: 2px solid var(--ink); padding-left: 14px; }
@@ -100,7 +101,7 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
   .piano .key[data-mobile-hide="true"] { display: none; }
   .mast { grid-template-columns: 1fr; }
   .rail { display: none; }
-  .m-ai { font-size: 33vw; } .m-product { font-size: 12.2vw; } .m-engineer { font-size: 17.5vw; }
+  .m-engineer { font-size: 24vw; } .m-creator { font-size: 17vw; }
   .m-senior { font-size: 0.9rem; }
   .site-nav a:not(:last-child) { display: none; }
   .site-nav a[data-active="true"]:not(:last-child) { display: inline-block; }
