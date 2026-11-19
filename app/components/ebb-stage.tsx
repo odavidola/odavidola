@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { BetaForm } from "./beta-form";
 
 const SCREENS = [
   { src: "/ebb/home.jpg", alt: "Ebb home: choose one priority. The others wait.", depth: 0.9 },
@@ -9,10 +10,10 @@ const SCREENS = [
 ];
 
 const POINTS = [
-  { t: "One priority at a time.", d: "The others wait." },
-  { t: "Experiments, not willpower.", d: "Change the method, not yourself." },
-  { t: "Evidence you can see.", d: "Days as colour. Pursuits as heatmaps." },
-  { t: "Built against guilt.", d: "No streaks. No points." },
+  { t: "Journal by voice or pen.", d: "A line is enough." },
+  { t: "Focus, protected.", d: "One tap shields the apps that pull you away." },
+  { t: "One decision at a time.", d: "Your mindset on it, and ways through when it is tested." },
+  { t: "Look back.", d: "Days as colour. Pursuits as heatmaps." },
 ];
 
 /** Four real screens, layered. They drift apart with the pointer, each at its own depth. */
@@ -48,7 +49,7 @@ export function EbbStage() {
         <p className="mono">iOS · Swift · on device</p>
         <h2>A life<br /><em>in progress.</em></h2>
         <p className="ebb-thesis">Intentions into decisions.<br />Decisions into practice.<br />Practice into evidence.</p>
-        <p className="ebb-lede">A private iOS app that turns decisions into lasting behaviour. Everything stays on the phone.</p>
+        <p className="ebb-lede">You know what matters. Your days don’t always show it. Ebb is a private iOS app that closes the gap: journal, focus, and hold one decision at a time, then see where your days actually went.</p>
       </div>
 
       <div className="ebb-cluster" ref={cluster}>
@@ -61,6 +62,7 @@ export function EbbStage() {
       <ul className="ebb-points">
         {POINTS.map((p) => (<li key={p.t}><b>{p.t}</b><p>{p.d}</p></li>))}
       </ul>
+      <BetaForm />
       <ul className="chips ebb-chips"><li>Swift</li><li>SwiftUI</li><li>SwiftData</li><li>FoundationModels</li><li>Speech</li><li>Vision</li><li>NaturalLanguage</li><li>WidgetKit</li><li>Screen Time</li></ul>
     </section>
   );
