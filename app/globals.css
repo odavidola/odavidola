@@ -27,9 +27,9 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
 @supports (animation-timeline: scroll()) { .progress { animation: grow linear both; animation-timeline: scroll(root); } @keyframes grow { to { transform: scaleX(1); } } }
 
 /* ── Header: the colour follows whatever section is underneath ── */
-.site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: max(8px, env(safe-area-inset-top)) max(var(--gutter), env(safe-area-inset-right)) 8px max(var(--gutter), env(safe-area-inset-left)); color: var(--ink); background: rgb(249 249 246 / 0.9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transition: color 0.3s, background 0.3s; }
-.site-header[data-tone="dark"] { color: var(--chalk); background: rgb(16 17 20 / 0.82); }
-.site-header[data-tone="blue"] { color: var(--chalk); background: rgb(53 75 255 / 0.88); }
+.site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: max(8px, env(safe-area-inset-top)) max(var(--gutter), env(safe-area-inset-right)) 8px max(var(--gutter), env(safe-area-inset-left)); color: var(--ink); background: rgb(249 249 246); transition: color 0.3s, background 0.3s; }
+.site-header[data-tone="dark"] { color: var(--chalk); background: rgb(16 17 20); }
+.site-header[data-tone="blue"] { color: var(--chalk); background: rgb(53 75 255); }
 .wordmark { white-space: nowrap; padding: 10px 0; display: inline-block; font-family: var(--font-display), sans-serif; font-weight: 800; font-size: 1.05rem; font-variation-settings: "wdth" 70; letter-spacing: 0.01em; text-transform: uppercase; }
 .site-nav { display: flex; gap: clamp(14px, 2.4vw, 32px); font-family: var(--font-mono), monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .site-nav a { padding: 12px 10px; margin: -8px 0; min-height: 40px; display: inline-flex; align-items: center; border: 1.5px solid transparent; transition: background 0.25s, color 0.25s, border-color 0.25s; }
