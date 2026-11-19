@@ -22,14 +22,14 @@ const NAMED: Record<number, Named> = {
   64: { id: "ebb", label: "Ebb", color: "#8b7bff" },
   67: { id: "work", label: "Experience", color: "#ffd400" },
   71: { id: "music", label: "Music", color: "#00c2b2" },
-  72: { id: "contact", label: "Contact", color: "#f05a3c" },
+  72: { id: "contact", label: "Contact", color: "#ff1493" },
 };
 
 /** Computer-keyboard layout: A W S E D F T G Y H U J K O L P ;  The piano spans exactly these keys, C4 to E5, so every key has a letter. */
 const KEYMAP: Record<string, number> = { a: 60, w: 61, s: 62, e: 63, d: 64, f: 65, t: 66, g: 67, y: 68, h: 69, u: 70, j: 71, k: 72, o: 73, l: 74, p: 75, ";": 76 };
 
 /** Every key carries a coloured cap from this palette, and flares in it when played. */
-const NEON = ["#354bff", "#8b7bff", "#ff2bd6", "#ffd400", "#00c2b2", "#f05a3c"];
+const NEON = ["#354bff", "#8b7bff", "#ff2bd6", "#ffd400", "#00c2b2", "#ff1493"];
 const LEGEND: Record<number, string> = Object.fromEntries(Object.entries(KEYMAP).map(([k, m]) => [m, k === ";" ? ";" : k.toUpperCase()]));
 
 const noteName = (m: number) => `${NAMES[m % 12]}${Math.floor(m / 12) - 1}`;
