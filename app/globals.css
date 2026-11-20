@@ -45,7 +45,7 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
 .m-ai { grid-area: ai; font-size: clamp(7rem, 24vw, 24rem); color: var(--blue); font-variation-settings: "wdth" calc(40 + var(--lvl) * 70), "wght" 1000; margin-right: -0.02em; }
 .m-product { grid-area: product; font-size: clamp(3.4rem, 11.6vw, 11.6rem); font-variation-settings: "wdth" calc(32 + var(--lvl) * 90), "wght" 900; padding-bottom: 0.1em; }
 .m-engineer { grid-area: engineer; font-size: clamp(4rem, 15.4vw, 15.4rem); font-variation-settings: "wdth" calc(26 + var(--lvl) * 60), "wght" 900; margin-top: -0.04em; }
-.m-creator { grid-area: creator; font-size: clamp(3.4rem, 11.6vw, 11.6rem); font-variation-settings: "wdth" calc(32 + var(--lvl) * 90), "wght" 900; margin-top: 0.04em; }
+.m-creator { grid-area: creator; font-size: clamp(3rem, 9vw, 9rem); font-variation-settings: "wdth" calc(32 + var(--lvl) * 90), "wght" 900; margin-top: 0.04em; }
 .m-creator i { font-style: normal; color: var(--accent); }
 .hero h1 span { animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .m-engineer { animation-delay: 0.1s !important; } .m-creator { animation-delay: 0.25s !important; }
@@ -101,7 +101,7 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
   .piano .key[data-mobile-hide="true"] { display: none; }
   .mast { grid-template-columns: 1fr; }
   .rail { display: none; }
-  .m-engineer { font-size: 24vw; } .m-creator { font-size: 17vw; }
+  .m-engineer { font-size: 15vw; } .m-creator { font-size: 10vw; }
   .m-senior { font-size: 0.9rem; }
   .site-nav a:not(:last-child) { display: none; }
   .site-nav a[data-active="true"]:not(:last-child) { display: inline-block; }
@@ -243,6 +243,11 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
   .ebb-cluster { height: 150vw; }
   .tape-row { grid-template-columns: 1fr; gap: 10px; }
   .music-wall { padding-bottom: 6vh; }
+}
+
+@media (hover: none) {
+  .screen { will-change: auto; box-shadow: 0 18px 30px -18px rgb(60 40 140 / 0.4), 0 0 0 1px rgb(91 79 196 / 0.12); }
+  .s2 { box-shadow: 0 24px 40px -20px rgb(60 40 140 / 0.45), 0 0 0 1px rgb(91 79 196 / 0.16); }
 }
 
 @media (prefers-reduced-motion: reduce) {
