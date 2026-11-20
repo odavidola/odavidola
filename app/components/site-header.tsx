@@ -10,14 +10,19 @@ export function SiteHeader() {
   const [active, setActive] = useState<string>("");
   useEffect(() => {
     let raf = 0;
+    const tones = [...document.querySelectorAll<HTMLElement>("[data-tone]")].filter((e) => e !== ref.current);
+    const sections = LINKS.map(([id]) => [id, document.getElementById(id)] as const);
     const update = () => {
-      // Look at what is under the bar (just below it), never at the bar itself.
-      const below = (ref.current?.offsetHeight ?? 56) + 6;
-      const el = document.elementsFromPoint(window.innerWidth / 2, below).map((e) => e.closest<HTMLElement>("[data-tone]")).find((e) => e && e !== ref.current);
-      if (el && ref.current) ref.current.dataset.tone = el.dataset.tone ?? "light";
+      // Read everything first, then write once: no layout thrash while scrolling.
+      const h = ref.current?.offsetHeight ?? 56;
+      const probe = h + 6;
+      let tone: string | undefined;
+      for (const e of tones) { const r = e.getBoundingClientRect(); if (r.top <= probe && r.bottom > probe) tone = e.dataset.tone; }
       const mid = window.innerHeight * 0.4;
-      const current = LINKS.map(([id]) => document.getElementById(id)).find((s) => s && s.getBoundingClientRect().top <= mid && s.getBoundingClientRect().bottom > mid);
-      setActive(current?.id ?? "");
+      let id = "";
+      for (const [sid, e] of sections) { if (!e) continue; const r = e.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) { id = sid; break; } }
+      if (ref.current && tone && ref.current.dataset.tone !== tone) ref.current.dataset.tone = tone;
+      setActive(id);
       raf = 0;
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
