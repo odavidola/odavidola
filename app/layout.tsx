@@ -10,8 +10,8 @@ const body = Instrument_Sans({ subsets: ["latin"], axes: ["wdth"], variable: "--
 const mono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
 const serif = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif", display: "swap" });
 
-const TITLE = "David Olagunju — Senior AI Product Engineer";
-const DESCRIPTION = "Senior AI Product Engineer in London. Eight years building front-office trading systems at Marex, JPMorgan and BNP Paribas. Creator of Moko, a live audio-ML piano teacher, and Ebb, an on-device iOS app.";
+const TITLE = "David Olagunju — Senior Engineer & Creator";
+const DESCRIPTION = "Senior Engineer & Creator in London. Eight years building front-office trading systems at Marex, JPMorgan and BNP Paribas. Creator of Moko, a live audio-ML piano teacher, and Ebb, an on-device iOS app.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://odavidola.com"),
@@ -32,7 +32,7 @@ const PERSON = {
   "@type": "Person",
   name: "David Olagunju",
   url: "https://odavidola.com",
-  jobTitle: "Senior AI Product Engineer",
+  jobTitle: "Senior Engineer & Creator",
   address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
   knowsAbout: ["TypeScript", "React", "Python", "Swift", "Applied AI", "Audio machine learning"],
   sameAs: ["https://github.com/odavidola", "https://www.linkedin.com/in/david-olagunju-143aa8a7/", "https://twitter.com/ODavidOlagunju"],
