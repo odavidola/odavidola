@@ -4,7 +4,7 @@ export function ContactPoster() {
   return (
     <section id="contact" className="contact" data-tone="light">
       <p className="mono">Contact</p>
-      <h2>Let&rsquo;s build something people feel.</h2>
+      <h2><span style={{ display: "block" }}>I got curious.</span> <span style={{ display: "block" }}>It got out of hand.</span></h2>
       <div className="contact-foot">
         <ContactActions />
         <div className="contact-meta">
