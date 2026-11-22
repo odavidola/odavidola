@@ -220,7 +220,7 @@ h1, h2, h3, p, ul { margin: 0; padding: 0; }
 
 /* ── Contact: a poster ──────────────────────────────── */
 .contact { background: var(--accent); color: var(--ink); padding: 14vh var(--gutter) 6vh; min-height: 90svh; display: flex; flex-direction: column; justify-content: space-between; gap: 8vh; }
-.contact h2 { font-family: var(--font-display), sans-serif; font-weight: 1000; text-transform: uppercase; font-variation-settings: "wdth" 28; font-size: clamp(4rem, 12.4vw, 13rem); line-height: 0.82; letter-spacing: -0.025em; max-width: 15ch; }
+.contact h2 { font-family: var(--font-display), sans-serif; font-weight: 1000; text-transform: uppercase; font-variation-settings: "wdth" 28; font-size: clamp(1.5rem, 8.6vw, 9rem); line-height: 0.86; letter-spacing: -0.025em; }
 .contact-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .contact .btn { border-color: var(--ink); }
 .contact-meta { display: grid; gap: 6px; text-align: right; }
