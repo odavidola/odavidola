@@ -3,17 +3,17 @@ import { useEffect, useRef } from "react";
 import { BetaForm } from "./beta-form";
 
 const SCREENS = [
-  { src: "/ebb/home.jpg", alt: "Ebb home: choose one priority. The others wait.", depth: 0.9 },
+  { src: "/ebb/home.jpg", alt: "Ebb home: a line to notice, the week as a band of colour, and today's entry.", depth: 0.9 },
   { src: "/ebb/life.jpg", alt: "Ebb's life-is-moving view: each day a strip of colour.", depth: 1.5 },
   { src: "/ebb/pursuit.jpg", alt: "Ebb pursuit detail: twelve runs, a weekly heatmap and history.", depth: 0.6 },
   { src: "/ebb/day.jpg", alt: "Ebb day view: decisions kept, focus sessions and a line to remember.", depth: 1.2 },
 ];
 
 const POINTS = [
-  { t: "Journal by voice or pen.", d: "A line is enough." },
-  { t: "Focus, protected.", d: "One tap shields the apps that pull you away." },
-  { t: "One decision at a time.", d: "Your mindset on it, and ways through when it is tested." },
-  { t: "Look back.", d: "Days as colour. Pursuits as heatmaps." },
+  { t: "In your words.", d: "Journal by voice or pen. A line is enough." },
+  { t: "Help in the moment.", d: "When a choice is tested, sit with it. One way through, started in a tap." },
+  { t: "A slip is not the day.", d: "No streaks, no points. The rest of your choices stay open." },
+  { t: "Protected at night.", d: "Apps lock at bedtime. Your morning routine lifts it." },
 ];
 
 /** Four real screens, layered. They drift apart with the pointer, each at its own depth. */
@@ -49,7 +49,7 @@ export function EbbStage() {
         <p className="mono">iOS · Swift · on device</p>
         <h2>A life<br /><em>in progress.</em></h2>
         <p className="ebb-thesis">Intentions into decisions.<br />Decisions into practice.<br />Practice into evidence.</p>
-        <p className="ebb-lede">You know what matters. Your days don’t always show it. Ebb is a private iOS app that closes the gap: journal, focus, and hold one decision at a time, then see where your days actually went.</p>
+        <p className="ebb-lede">Ebb is a personal system for living well, changing behaviour and enjoying the process of becoming. Journal, focus, and make a few choices a day, then see where your days went. Private, on your device.</p>
       </div>
 
       <div className="ebb-cluster" ref={cluster}>

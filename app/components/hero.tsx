@@ -5,7 +5,7 @@ import { onLevel } from "@/lib/audio-bus";
 
 const PREVIEWS: Record<string, string> = {
   Moko: "Audio ML pipeline. Live.",
-  Ebb: "A private life system, on the device.",
+  Ebb: "A personal system for living well.",
   Experience: "Eight years of front-office systems.",
   Music: "ynda. Afloat EP.",
   Contact: "Say hello.",
